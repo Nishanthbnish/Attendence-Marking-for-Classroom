@@ -1,0 +1,58 @@
+﻿@model AMC2.Models.session_Details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>session_Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Available_Slots)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Available_Slots)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skillset.Skill_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Session_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

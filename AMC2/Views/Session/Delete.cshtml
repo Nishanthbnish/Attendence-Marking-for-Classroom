@@ -1,0 +1,64 @@
+﻿@model AMC2.Models.session_Details
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>session_Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Available_Slots)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Available_Slots)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skillset.Skill_Type)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

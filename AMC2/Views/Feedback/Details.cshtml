@@ -1,0 +1,42 @@
+﻿@model AMC2.Models.Feedback
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Feedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.msg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.msg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.session_Details.Session_Des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.session_Details.Session_Des)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

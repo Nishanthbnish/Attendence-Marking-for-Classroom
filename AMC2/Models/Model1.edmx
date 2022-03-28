@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AMCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adminreg">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Admin_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="enroll">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" Nullable="false" />
+          <Property Name="Skill_Id" Type="int" />
+          <Property Name="Session_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subject" Type="nvarchar" MaxLength="50" />
+          <Property Name="msg" Type="nvarchar" MaxLength="50" />
+          <Property Name="Session_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="session_Details">
+          <Key>
+            <PropertyRef Name="Session_Id" />
+          </Key>
+          <Property Name="Session_Id" Type="int" Nullable="false" />
+          <Property Name="Session_Des" Type="varchar" MaxLength="50" />
+          <Property Name="Skill_Id" Type="int" />
+          <Property Name="Session_Date" Type="date" />
+          <Property Name="Session_Time" Type="time" Precision="7" />
+          <Property Name="Available_Slots" Type="int" />
+        </EntityType>
+        <EntityType Name="skillset">
+          <Key>
+            <PropertyRef Name="Skill_Id" />
+          </Key>
+          <Property Name="Skill_Id" Type="int" Nullable="false" />
+          <Property Name="Skill_Type" Type="varchar" MaxLength="50" />
+          <Property Name="Skill_Des" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="trainerreg">
+          <Key>
+            <PropertyRef Name="Trainer_Id" />
+          </Key>
+          <Property Name="Trainer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Trainer_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Skill_Id" Type="int" />
+          <Property Name="Session_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="userreg">
+          <Key>
+            <PropertyRef Name="Emp_Id" />
+          </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Emp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_enroll_session_Details">
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="0..1" />
+          <End Role="enroll" Type="Self.enroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session_Details">
+              <PropertyRef Name="Session_Id" />
+            </Principal>
+            <Dependent Role="enroll">
+              <PropertyRef Name="Session_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enroll_skillset">
+          <End Role="skillset" Type="Self.skillset" Multiplicity="0..1" />
+          <End Role="enroll" Type="Self.enroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skillset">
+              <PropertyRef Name="Skill_Id" />
+            </Principal>
+            <Dependent Role="enroll">
+              <PropertyRef Name="Skill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_session_Details">
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session_Details">
+              <PropertyRef Name="Session_Id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="Session_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_session_Details_skillset">
+          <End Role="skillset" Type="Self.skillset" Multiplicity="0..1" />
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skillset">
+              <PropertyRef Name="Skill_Id" />
+            </Principal>
+            <Dependent Role="session_Details">
+              <PropertyRef Name="Skill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trainerreg_session_Details">
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="0..1" />
+          <End Role="trainerreg" Type="Self.trainerreg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session_Details">
+              <PropertyRef Name="Session_Id" />
+            </Principal>
+            <Dependent Role="trainerreg">
+              <PropertyRef Name="Session_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trainerreg_skillset">
+          <End Role="skillset" Type="Self.skillset" Multiplicity="0..1" />
+          <End Role="trainerreg" Type="Self.trainerreg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skillset">
+              <PropertyRef Name="Skill_Id" />
+            </Principal>
+            <Dependent Role="trainerreg">
+              <PropertyRef Name="Skill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AMCModelStoreContainer">
+          <EntitySet Name="adminreg" EntityType="Self.adminreg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="enroll" EntityType="Self.enroll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="session_Details" EntityType="Self.session_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="skillset" EntityType="Self.skillset" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trainerreg" EntityType="Self.trainerreg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userreg" EntityType="Self.userreg" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_enroll_session_Details" Association="Self.FK_enroll_session_Details">
+            <End Role="session_Details" EntitySet="session_Details" />
+            <End Role="enroll" EntitySet="enroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enroll_skillset" Association="Self.FK_enroll_skillset">
+            <End Role="skillset" EntitySet="skillset" />
+            <End Role="enroll" EntitySet="enroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_session_Details" Association="Self.FK_Feedback_session_Details">
+            <End Role="session_Details" EntitySet="session_Details" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_session_Details_skillset" Association="Self.FK_session_Details_skillset">
+            <End Role="skillset" EntitySet="skillset" />
+            <End Role="session_Details" EntitySet="session_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trainerreg_session_Details" Association="Self.FK_trainerreg_session_Details">
+            <End Role="session_Details" EntitySet="session_Details" />
+            <End Role="trainerreg" EntitySet="trainerreg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trainerreg_skillset" Association="Self.FK_trainerreg_skillset">
+            <End Role="skillset" EntitySet="skillset" />
+            <End Role="trainerreg" EntitySet="trainerreg" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AMCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="adminreg">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="enroll">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" />
+          <Property Name="Skill_Id" Type="Int32" />
+          <Property Name="Session_Id" Type="Int32" />
+          <NavigationProperty Name="session_Details" Relationship="Self.FK_enroll_session_Details" FromRole="enroll" ToRole="session_Details" />
+          <NavigationProperty Name="skillset" Relationship="Self.FK_enroll_skillset" FromRole="enroll" ToRole="skillset" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="msg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Session_Id" Type="Int32" />
+          <NavigationProperty Name="session_Details" Relationship="Self.FK_Feedback_session_Details" FromRole="Feedback" ToRole="session_Details" />
+        </EntityType>
+        <EntityType Name="session_Details">
+          <Key>
+            <PropertyRef Name="Session_Id" />
+          </Key>
+          <Property Name="Session_Id" Type="Int32" Nullable="false" />
+          <Property Name="Session_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Skill_Id" Type="Int32" />
+          <Property Name="Session_Date" Type="DateTime" Precision="0" />
+          <Property Name="Session_Time" Type="Time" Precision="7" />
+          <Property Name="Available_Slots" Type="Int32" />
+          <NavigationProperty Name="enrolls" Relationship="Self.FK_enroll_session_Details" FromRole="session_Details" ToRole="enroll" />
+          <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_session_Details" FromRole="session_Details" ToRole="Feedback" />
+          <NavigationProperty Name="skillset" Relationship="Self.FK_session_Details_skillset" FromRole="session_Details" ToRole="skillset" />
+          <NavigationProperty Name="trainerregs" Relationship="Self.FK_trainerreg_session_Details" FromRole="session_Details" ToRole="trainerreg" />
+        </EntityType>
+        <EntityType Name="skillset">
+          <Key>
+            <PropertyRef Name="Skill_Id" />
+          </Key>
+          <Property Name="Skill_Id" Type="Int32" Nullable="false" />
+          <Property Name="Skill_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Skill_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="enrolls" Relationship="Self.FK_enroll_skillset" FromRole="skillset" ToRole="enroll" />
+          <NavigationProperty Name="session_Details" Relationship="Self.FK_session_Details_skillset" FromRole="skillset" ToRole="session_Details" />
+          <NavigationProperty Name="trainerregs" Relationship="Self.FK_trainerreg_skillset" FromRole="skillset" ToRole="trainerreg" />
+        </EntityType>
+        <EntityType Name="trainerreg">
+          <Key>
+            <PropertyRef Name="Trainer_Id" />
+          </Key>
+          <Property Name="Trainer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Trainer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Skill_Id" Type="Int32" />
+          <Property Name="Session_Id" Type="Int32" />
+          <NavigationProperty Name="session_Details" Relationship="Self.FK_trainerreg_session_Details" FromRole="trainerreg" ToRole="session_Details" />
+          <NavigationProperty Name="skillset" Relationship="Self.FK_trainerreg_skillset" FromRole="trainerreg" ToRole="skillset" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="userreg">
+          <Key>
+            <PropertyRef Name="Emp_Id" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_enroll_session_Details">
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="0..1" />
+          <End Role="enroll" Type="Self.enroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session_Details">
+              <PropertyRef Name="Session_Id" />
+            </Principal>
+            <Dependent Role="enroll">
+              <PropertyRef Name="Session_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enroll_skillset">
+          <End Role="skillset" Type="Self.skillset" Multiplicity="0..1" />
+          <End Role="enroll" Type="Self.enroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skillset">
+              <PropertyRef Name="Skill_Id" />
+            </Principal>
+            <Dependent Role="enroll">
+              <PropertyRef Name="Skill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_session_Details">
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session_Details">
+              <PropertyRef Name="Session_Id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="Session_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_session_Details_skillset">
+          <End Role="skillset" Type="Self.skillset" Multiplicity="0..1" />
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skillset">
+              <PropertyRef Name="Skill_Id" />
+            </Principal>
+            <Dependent Role="session_Details">
+              <PropertyRef Name="Skill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trainerreg_session_Details">
+          <End Role="session_Details" Type="Self.session_Details" Multiplicity="0..1" />
+          <End Role="trainerreg" Type="Self.trainerreg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session_Details">
+              <PropertyRef Name="Session_Id" />
+            </Principal>
+            <Dependent Role="trainerreg">
+              <PropertyRef Name="Session_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trainerreg_skillset">
+          <End Role="skillset" Type="Self.skillset" Multiplicity="0..1" />
+          <End Role="trainerreg" Type="Self.trainerreg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skillset">
+              <PropertyRef Name="Skill_Id" />
+            </Principal>
+            <Dependent Role="trainerreg">
+              <PropertyRef Name="Skill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AMCEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adminregs" EntityType="Self.adminreg" />
+          <EntitySet Name="enrolls" EntityType="Self.enroll" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="session_Details" EntityType="Self.session_Details" />
+          <EntitySet Name="skillsets" EntityType="Self.skillset" />
+          <EntitySet Name="trainerregs" EntityType="Self.trainerreg" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="userregs" EntityType="Self.userreg" />
+          <AssociationSet Name="FK_enroll_session_Details" Association="Self.FK_enroll_session_Details">
+            <End Role="session_Details" EntitySet="session_Details" />
+            <End Role="enroll" EntitySet="enrolls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enroll_skillset" Association="Self.FK_enroll_skillset">
+            <End Role="skillset" EntitySet="skillsets" />
+            <End Role="enroll" EntitySet="enrolls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_session_Details" Association="Self.FK_Feedback_session_Details">
+            <End Role="session_Details" EntitySet="session_Details" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_session_Details_skillset" Association="Self.FK_session_Details_skillset">
+            <End Role="skillset" EntitySet="skillsets" />
+            <End Role="session_Details" EntitySet="session_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trainerreg_session_Details" Association="Self.FK_trainerreg_session_Details">
+            <End Role="session_Details" EntitySet="session_Details" />
+            <End Role="trainerreg" EntitySet="trainerregs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trainerreg_skillset" Association="Self.FK_trainerreg_skillset">
+            <End Role="skillset" EntitySet="skillsets" />
+            <End Role="trainerreg" EntitySet="trainerregs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AMCModelStoreContainer" CdmEntityContainer="AMCEntities1">
+          <EntitySetMapping Name="adminregs">
+            <EntityTypeMapping TypeName="AMCModel.adminreg">
+              <MappingFragment StoreEntitySet="adminreg">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+                <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enrolls">
+            <EntityTypeMapping TypeName="AMCModel.enroll">
+              <MappingFragment StoreEntitySet="enroll">
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Skill_Id" ColumnName="Skill_Id" />
+                <ScalarProperty Name="Session_Id" ColumnName="Session_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="AMCModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+                <ScalarProperty Name="Session_Id" ColumnName="Session_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="session_Details">
+            <EntityTypeMapping TypeName="AMCModel.session_Details">
+              <MappingFragment StoreEntitySet="session_Details">
+                <ScalarProperty Name="Session_Id" ColumnName="Session_Id" />
+                <ScalarProperty Name="Session_Des" ColumnName="Session_Des" />
+                <ScalarProperty Name="Skill_Id" ColumnName="Skill_Id" />
+                <ScalarProperty Name="Session_Date" ColumnName="Session_Date" />
+                <ScalarProperty Name="Session_Time" ColumnName="Session_Time" />
+                <ScalarProperty Name="Available_Slots" ColumnName="Available_Slots" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skillsets">
+            <EntityTypeMapping TypeName="AMCModel.skillset">
+              <MappingFragment StoreEntitySet="skillset">
+                <ScalarProperty Name="Skill_Id" ColumnName="Skill_Id" />
+                <ScalarProperty Name="Skill_Type" ColumnName="Skill_Type" />
+                <ScalarProperty Name="Skill_Des" ColumnName="Skill_Des" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trainerregs">
+            <EntityTypeMapping TypeName="AMCModel.trainerreg">
+              <MappingFragment StoreEntitySet="trainerreg">
+                <ScalarProperty Name="Trainer_Id" ColumnName="Trainer_Id" />
+                <ScalarProperty Name="Trainer_Name" ColumnName="Trainer_Name" />
+                <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Skill_Id" ColumnName="Skill_Id" />
+                <ScalarProperty Name="Session_Id" ColumnName="Session_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="AMCModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userregs">
+            <EntityTypeMapping TypeName="AMCModel.userreg">
+              <MappingFragment StoreEntitySet="userreg">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Emp_Id" ColumnName="Emp_Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

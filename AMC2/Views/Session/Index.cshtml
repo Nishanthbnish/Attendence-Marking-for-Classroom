@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AMC2.Models.session_Details>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Session_Des)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Session_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Session_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Available_Slots)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    
+    <td>
+        @Html.DisplayFor(modelItem => item.Session_Des)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Session_Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Session_Time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Available_Slots)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Session_Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Session_Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Session_Id })
+    </td>
+</tr>
+}
+
+</table>

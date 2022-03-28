@@ -1,0 +1,58 @@
+﻿@model AMC2.Models.trainerreg
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>trainerreg</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Trainer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trainer_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.session_Details.Session_Des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.session_Details.Session_Des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skillset.Skill_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Trainer_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
