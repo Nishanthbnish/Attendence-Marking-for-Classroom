@@ -30,9 +30,6 @@
                             <li>@Html.ActionLink("Admin", "Asignup", "Account")</li>
                         </ul>
                     </li>
-
-
-
                     <li class="dropdown">
                         <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Login <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -42,14 +39,7 @@
                         </ul>
                     </li>
 
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a>Welcome - @User.Identity.Name </a></li>
-                        <li>@Html.ActionLink("Session Registration", "Create", "Session")</li>
-                        <li>@Html.ActionLink("Trainer Registration", "Create", "Trainer")</li>
-                        <li>@Html.ActionLink("Skill Set", "Create", "Skillsets")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                    }
+                    
                 </ul>
             </div>
         </div>

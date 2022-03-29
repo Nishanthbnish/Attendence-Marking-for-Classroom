@@ -30,9 +30,9 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a>Welcome - @User.Identity.Name </a></li>
-                        <li>@Html.ActionLink("Session", "Create", "Session")</li>
-                        <li>@Html.ActionLink("Trainer", "Create", "Trainer")</li>
-                        <li>@Html.ActionLink("Skill Set", "Create", "Skillsets")</li>
+                        <li>@Html.ActionLink("Session", "Index", "Session")</li>
+                        <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
+                        <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                     }
                 </ul>
