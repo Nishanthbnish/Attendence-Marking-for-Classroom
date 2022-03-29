@@ -32,6 +32,27 @@ namespace AMC2.Controllers
                 return View();
             }
         }
+        public ActionResult Alogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Alogin(Models.Membership model)
+        {
+            using (var context = new AMCEntities1())
+            {
+                bool isValid = context.adminregs.Any(x => x.FirstName == model.Username && x.Password == model.Password);
+                if (isValid)
+                {
+                    FormsAuthentication.SetAuthCookie(model.Username, false);
+                    return RedirectToAction("Index", "Session");
+                }
+
+                ModelState.AddModelError("", "Invalid username and password");
+                return View();
+            }
+        }
 
         public ActionResult Signup()
         {
@@ -44,6 +65,22 @@ namespace AMC2.Controllers
             using (var context = new AMCEntities1())
             {
                 context.userregs.Add(model);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Asignup()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Asignup(adminreg model)
+        {
+            using (var context = new AMCEntities1())
+            {
+                context.adminregs.Add(model);
                 context.SaveChanges();
             }
             return RedirectToAction("Login");

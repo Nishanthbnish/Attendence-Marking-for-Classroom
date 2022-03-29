@@ -22,11 +22,11 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("User Login", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Admin Login", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Admin Login", "Alogin", "Account")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
 
-                        <li>@Html.ActionLink("Session Registration", "create", "Session")</li>
+                        <li>@Html.ActionLink("Session Registration", "Create", "Session")</li>
                         <li>@Html.ActionLink("Trainer Registration", "Create", "Trainer")</li>
                         <li>@Html.ActionLink("Skill Set", "Create", "Skillsets")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
