@@ -3,56 +3,92 @@
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/style")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Session_Des)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Session_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Session_Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Available_Slots)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.skillset.Skill_Type)
-        </th>
-        <th></th>
-    </tr>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a>Welcome - @User.Identity.Name </a></li>
+                        <li>@Html.ActionLink("Session", "Create", "Session")</li>
+                        <li>@Html.ActionLink("Trainer", "Create", "Trainer")</li>
+                        <li>@Html.ActionLink("Skill Set", "Create", "Skillsets")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h2>Index</h2>
 
-@foreach (var item in Model) {
-<tr>
-    
-    <td>
-        @Html.DisplayFor(modelItem => item.Session_Des)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Session_Date)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Session_Time)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Available_Slots)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Session_Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Session_Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Session_Id })
-    </td>
-</tr>
-}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Session_Des)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Session_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Session_Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available_Slots)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session_Des)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available_Slots)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Session_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Session_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Session_Id })
+                </td>
+            </tr>
+        }
+
+    </table>

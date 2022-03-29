@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/style")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -21,22 +22,34 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("User Login", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Admin Login", "Alogin", "Account")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Registration <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+                            <li>@Html.ActionLink("User", "Signup", "Account")</li>
+                            <li>@Html.ActionLink("Admin", "Asignup", "Account")</li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Login <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+                            <li>@Html.ActionLink("User", "Login", "Account")</li>
+                            <li>@Html.ActionLink("Admin", "Alogin", "Account")</li>
+                        </ul>
+                    </li>
+
                     @if (User.Identity.IsAuthenticated)
                     {
-
+                        <li><a>Welcome - @User.Identity.Name </a></li>
                         <li>@Html.ActionLink("Session Registration", "Create", "Session")</li>
                         <li>@Html.ActionLink("Trainer Registration", "Create", "Trainer")</li>
                         <li>@Html.ActionLink("Skill Set", "Create", "Skillsets")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                     }
-                    else
-                    {
-                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                    }
-
-
                 </ul>
             </div>
         </div>
