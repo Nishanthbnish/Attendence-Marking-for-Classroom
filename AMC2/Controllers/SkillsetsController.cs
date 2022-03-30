@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using AMC2.Models;
 
 namespace AMC2.Controllers
@@ -34,6 +35,12 @@ namespace AMC2.Controllers
             }
             return View(skillset);
         }
+       
+
+        private void CommitData()
+        {
+            throw new NotImplementedException();
+        }
 
         // GET: Skillsets/Create
         public ActionResult Create()
@@ -52,8 +59,10 @@ namespace AMC2.Controllers
             {
                 db.skillsets.Add(skillset);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Skillset Created Successfully !";
                 return RedirectToAction("Index");
             }
+
 
             return View(skillset);
         }
@@ -84,6 +93,7 @@ namespace AMC2.Controllers
             {
                 db.Entry(skillset).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Skillset Updated Successfully !";
                 return RedirectToAction("Index");
             }
             return View(skillset);
@@ -112,6 +122,7 @@ namespace AMC2.Controllers
             skillset skillset = db.skillsets.Find(id);
             db.skillsets.Remove(skillset);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Skillset Deleted Successfully !";
             return RedirectToAction("Index");
         }
 

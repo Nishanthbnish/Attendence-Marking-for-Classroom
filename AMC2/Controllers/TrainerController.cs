@@ -55,6 +55,7 @@ namespace AMC2.Controllers
             {
                 db.trainerregs.Add(trainerreg);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Trainer Created Successfully !";
                 return RedirectToAction("Index");
             }
 
@@ -91,6 +92,7 @@ namespace AMC2.Controllers
             {
                 db.Entry(trainerreg).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Trainer Updated Successfully";
                 return RedirectToAction("Index");
             }
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", trainerreg.Session_Id);
@@ -121,6 +123,7 @@ namespace AMC2.Controllers
             trainerreg trainerreg = db.trainerregs.Find(id);
             db.trainerregs.Remove(trainerreg);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Trainer Deleted Successfully !";
             return RedirectToAction("Index");
         }
 

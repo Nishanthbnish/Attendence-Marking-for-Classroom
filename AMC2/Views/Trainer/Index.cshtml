@@ -1,9 +1,16 @@
 ﻿@model IEnumerable<AMC2.Models.trainerreg>
 
+
+
 @{
     ViewBag.Title = "Index";
 }
 <head>
+    <style>
+        h2.welcome {
+            text-align: center;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -12,6 +19,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -20,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Attendence Marking for Classroom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -29,7 +37,7 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a>Welcome - @User.Identity.Name </a></li>
+
                         <li>@Html.ActionLink("Session", "Index", "Session")</li>
                         <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
                         <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
@@ -39,34 +47,64 @@
             </div>
         </div>
     </div>
-    <h2>Index</h2>
+    <h2 class="welcome">Welcome @User.Identity.Name </h2>
+    <h2>Trainer Report</h2>
 
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+    @if (@TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> @TempData["AlertMessage"]
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>@*x*@
+            </button>
+        </div>
+    }
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Trainer_Name)
+                <label>Selecetion</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contact_Number)
+                <label>Trainer Name</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                <label>Phone Number</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.session_Details.Session_Des)
+                <label>Email</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+                <label>Date</label>
             </th>
-            <th></th>
+            <th>
+                <label>Time</label>
+            </th>
+            <th>
+                <label>Slots</label>
+            </th>
+            <th>
+                <label>Description</label>
+            </th>
+            <th>
+                <label>Skill</label>
+            </th>
+            <th>
+                <label>Session ID</label>
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
+
+
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.selection_Id)
+
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Trainer_Name)
                 </td>
@@ -77,17 +115,30 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.session_Details.Session_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.session_Details.Session_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.session_Details.Available_Slots)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.session_Details.Session_Des)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.session_Details.Session_Id)
+                </td>
+                <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Trainer_Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Trainer_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Trainer_Id })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.Trainer_Id })
                 </td>
             </tr>
+
         }
 
     </table>

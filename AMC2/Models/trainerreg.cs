@@ -14,6 +14,7 @@ namespace AMC2.Models
     
     public partial class trainerreg
     {
+        public bool selection_Id { get; set; }
         public int Trainer_Id { get; set; }
         public string Trainer_Name { get; set; }
         public string Contact_Number { get; set; }

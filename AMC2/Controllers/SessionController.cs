@@ -54,6 +54,7 @@ namespace AMC2.Controllers
             {
                 db.session_Details.Add(session_Details);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Session Created Successfully !";
                 return RedirectToAction("Index");
             }
 
@@ -88,6 +89,7 @@ namespace AMC2.Controllers
             {
                 db.Entry(session_Details).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Session Updated Successfully !";
                 return RedirectToAction("Index");
             }
             ViewBag.Skill_Id = new SelectList(db.skillsets, "Skill_Id", "Skill_Type", session_Details.Skill_Id);
@@ -117,6 +119,7 @@ namespace AMC2.Controllers
             session_Details session_Details = db.session_Details.Find(id);
             db.session_Details.Remove(session_Details);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Session Deleted Successfully !";
             return RedirectToAction("Index");
         }
 
