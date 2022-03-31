@@ -38,6 +38,8 @@
                         <li>@Html.ActionLink("Session", "Index", "Session")</li>
                         <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
                         <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
+                        <li>@Html.ActionLink("Enroll", "Index", "Enrolls")</li>
+                        <li>@Html.ActionLink("Mark Attendence", "Attendence", "Marks")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                     }
                 </ul>
@@ -46,7 +48,7 @@
     </div>
     <h2 class="welcome">Welcome @User.Identity.Name </h2>
     <h2>Session Report </h2>
-
+</body>
 
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -62,49 +64,57 @@
     }
     <table class="table">
         <tr>
+            @*<th>
+            <label>Selection</label>
+        </th>*@
+            <th>
+                <label>Session ID</label>
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Session_Des)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Session_Date)
+                <label>Date</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Session_Time)
+                <label>Time</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Available_Slots)
+                <label>Slots</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+                <label>Skill</label>
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Session_Des)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Session_Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Session_Time)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Available_Slots)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Session_Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Session_Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Session_Id })
-                </td>
-            </tr>
+    <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Session_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Session_Des)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Session_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Session_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available_Slots)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Session_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Session_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Session_Id })
+            </td>
+    </tr>
         }
 
     </table>

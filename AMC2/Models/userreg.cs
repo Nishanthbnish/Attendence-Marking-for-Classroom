@@ -14,10 +14,22 @@ namespace AMC2.Models
     
     public partial class userreg
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public userreg()
+        {
+            this.enrolls = new HashSet<enroll>();
+            this.Feedbacks = new HashSet<Feedback>();
+        }
+    
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Emp_Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public int User_Id { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<enroll> enrolls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }

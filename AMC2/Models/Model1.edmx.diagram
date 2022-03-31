@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="AMCModel.session_Details" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AMCModel.skillset" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AMCModel.trainerreg" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AMCModel.user" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AMCModel.userreg" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="AMCModel.FK_enroll_session_Details" ManuallyRouted="false" />
         <AssociationConnector Association="AMCModel.FK_enroll_skillset" ManuallyRouted="false" />
@@ -19,6 +18,8 @@
         <AssociationConnector Association="AMCModel.FK_session_Details_skillset" ManuallyRouted="false" />
         <AssociationConnector Association="AMCModel.FK_trainerreg_session_Details" ManuallyRouted="false" />
         <AssociationConnector Association="AMCModel.FK_trainerreg_skillset" ManuallyRouted="false" />
+        <AssociationConnector Association="AMCModel.FK_enroll_userreg" />
+        <AssociationConnector Association="AMCModel.FK_Feedback_userreg" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

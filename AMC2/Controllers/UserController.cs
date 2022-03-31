@@ -52,6 +52,7 @@ namespace AMC2.Controllers
             {
                 db.userregs.Add(userreg);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "User Successfully Registered!";
                 return RedirectToAction("Index");
             }
 

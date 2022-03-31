@@ -17,7 +17,7 @@ namespace AMC2.Controllers
         // GET: Feedback
         public ActionResult Index()
         {
-            var feedbacks = db.Feedbacks.Include(f => f.session_Details);
+            var feedbacks = db.Feedbacks.Include(f => f.session_Details).Include(f => f.userreg);
             return View(feedbacks.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace AMC2.Controllers
         public ActionResult Create()
         {
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des");
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace AMC2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,subject,msg,Session_Id")] Feedback feedback)
+        public ActionResult Create([Bind(Include = "Id,subject,msg,Session_Id,User_Id")] Feedback feedback)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace AMC2.Controllers
             }
 
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", feedback.Session_Id);
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName", feedback.User_Id);
             return View(feedback);
         }
 
@@ -74,6 +76,7 @@ namespace AMC2.Controllers
                 return HttpNotFound();
             }
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", feedback.Session_Id);
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName", feedback.User_Id);
             return View(feedback);
         }
 
@@ -82,7 +85,7 @@ namespace AMC2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,subject,msg,Session_Id")] Feedback feedback)
+        public ActionResult Edit([Bind(Include = "Id,subject,msg,Session_Id,User_Id")] Feedback feedback)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace AMC2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", feedback.Session_Id);
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName", feedback.User_Id);
             return View(feedback);
         }
 

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AMC2.Models.enroll>
+
+@{
+    ViewBag.Title = "EnrollList";
+}
+
+<h2>EnrollList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.session_Details.Session_Des)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userreg.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.session_Details.Session_Des)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userreg.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Sno }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Sno }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Sno })
+        </td>
+    </tr>
+}
+
+</table>

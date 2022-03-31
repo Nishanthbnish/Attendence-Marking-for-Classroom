@@ -17,7 +17,7 @@ namespace AMC2.Controllers
         // GET: Enrolls
         public ActionResult Index()
         {
-            var enrolls = db.enrolls.Include(e => e.session_Details).Include(e => e.skillset);
+            var enrolls = db.enrolls.Include(e => e.session_Details).Include(e => e.skillset).Include(e => e.userreg);
             return View(enrolls.ToList());
         }
 
@@ -41,6 +41,7 @@ namespace AMC2.Controllers
         {
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des");
             ViewBag.Skill_Id = new SelectList(db.skillsets, "Skill_Id", "Skill_Type");
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName");
             return View();
         }
 
@@ -49,17 +50,19 @@ namespace AMC2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Sno,Skill_Id,Session_Id")] enroll enroll)
+        public ActionResult Create([Bind(Include = "Sno,Skill_Id,Session_Id,User_Id")] enroll enroll)
         {
             if (ModelState.IsValid)
             {
                 db.enrolls.Add(enroll);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Enrolled Successfully !";
                 return RedirectToAction("Index");
             }
 
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", enroll.Session_Id);
             ViewBag.Skill_Id = new SelectList(db.skillsets, "Skill_Id", "Skill_Type", enroll.Skill_Id);
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName", enroll.User_Id);
             return View(enroll);
         }
 
@@ -77,6 +80,7 @@ namespace AMC2.Controllers
             }
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", enroll.Session_Id);
             ViewBag.Skill_Id = new SelectList(db.skillsets, "Skill_Id", "Skill_Type", enroll.Skill_Id);
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName", enroll.User_Id);
             return View(enroll);
         }
 
@@ -85,16 +89,18 @@ namespace AMC2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Sno,Skill_Id,Session_Id")] enroll enroll)
+        public ActionResult Edit([Bind(Include = "Sno,Skill_Id,Session_Id,User_Id")] enroll enroll)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(enroll).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Updated Successfully !";
                 return RedirectToAction("Index");
             }
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", enroll.Session_Id);
             ViewBag.Skill_Id = new SelectList(db.skillsets, "Skill_Id", "Skill_Type", enroll.Skill_Id);
+            ViewBag.User_Id = new SelectList(db.userregs, "User_Id", "FirstName", enroll.User_Id);
             return View(enroll);
         }
 
@@ -121,6 +127,7 @@ namespace AMC2.Controllers
             enroll enroll = db.enrolls.Find(id);
             db.enrolls.Remove(enroll);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Deleted Successfully !";
             return RedirectToAction("Index");
         }
 

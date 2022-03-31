@@ -31,9 +31,6 @@ namespace AMC2.Models
         public virtual DbSet<session_Details> session_Details { get; set; }
         public virtual DbSet<skillset> skillsets { get; set; }
         public virtual DbSet<trainerreg> trainerregs { get; set; }
-        public virtual DbSet<user> users { get; set; }
         public virtual DbSet<userreg> userregs { get; set; }
-
-        public System.Data.Entity.DbSet<AMC2.Models.Membership> Memberships { get; set; }
     }
 }

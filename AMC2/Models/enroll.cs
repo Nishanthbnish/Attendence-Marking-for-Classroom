@@ -17,8 +17,10 @@ namespace AMC2.Models
         public int Sno { get; set; }
         public Nullable<int> Skill_Id { get; set; }
         public Nullable<int> Session_Id { get; set; }
+        public Nullable<int> User_Id { get; set; }
     
         public virtual session_Details session_Details { get; set; }
         public virtual skillset skillset { get; set; }
+        public virtual userreg userreg { get; set; }
     }
 }

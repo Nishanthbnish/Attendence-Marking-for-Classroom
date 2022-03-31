@@ -25,7 +25,7 @@ namespace AMC2.Controllers
                 if (isValid)
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, false);
-                    return RedirectToAction("Index", "Session");
+                    return RedirectToAction("Index", "Enrolls");
                 }
 
                 ModelState.AddModelError("", "Invalid username and password");

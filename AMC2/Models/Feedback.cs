@@ -18,7 +18,9 @@ namespace AMC2.Models
         public string subject { get; set; }
         public string msg { get; set; }
         public Nullable<int> Session_Id { get; set; }
+        public Nullable<int> User_Id { get; set; }
     
         public virtual session_Details session_Details { get; set; }
+        public virtual userreg userreg { get; set; }
     }
 }
