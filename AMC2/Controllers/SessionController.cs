@@ -12,6 +12,7 @@ namespace AMC2.Controllers
 {
     public class SessionController : Controller
     {
+        
         private AMCEntities1 db = new AMCEntities1();
 
         // GET: Session
@@ -20,7 +21,17 @@ namespace AMC2.Controllers
             var session_Details = db.session_Details.Include(s => s.skillset);
             return View(session_Details.ToList());
         }
-
+        //search action result
+        [HttpPost]
+        public ActionResult Index(string SessionSearch)
+        {
+            var users = db.session_Details.ToList();
+            if (SessionSearch != null)
+            {
+                users = db.session_Details.Where(x => x.Session_Des.Contains(SessionSearch)).ToList();
+            }
+            return View(users);
+        }
         // GET: Session/Details/5
         public ActionResult Details(int? id)
         {

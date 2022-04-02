@@ -55,6 +55,7 @@ namespace AMC2.Controllers
             {
                 db.Feedbacks.Add(feedback);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Feedback Created Successfully !";
                 return RedirectToAction("Index");
             }
 
@@ -91,6 +92,7 @@ namespace AMC2.Controllers
             {
                 db.Entry(feedback).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Feedback Updated Successfully !";
                 return RedirectToAction("Index");
             }
             ViewBag.Session_Id = new SelectList(db.session_Details, "Session_Id", "Session_Des", feedback.Session_Id);
@@ -121,6 +123,7 @@ namespace AMC2.Controllers
             Feedback feedback = db.Feedbacks.Find(id);
             db.Feedbacks.Remove(feedback);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Feedback Deleted Successfully !";
             return RedirectToAction("Index");
         }
 

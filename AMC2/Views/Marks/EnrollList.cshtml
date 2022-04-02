@@ -1,10 +1,53 @@
 ﻿@model IEnumerable<AMC2.Models.enroll>
 
 @{
-    ViewBag.Title = "EnrollList";
+    ViewBag.Title = "EnrollLists";
 }
 
-<h2>EnrollList</h2>
+<head>
+    <style>
+        h2.welcome {
+            text-align: center;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/style")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Attendence Marking for Classroom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li>@Html.ActionLink("Enroll", "Index", "Enrolls")</li>
+                        <li>@Html.ActionLink("Session", "SessionList", "Marks")</li>
+                        <li>@Html.ActionLink("Feedback", "Index", "Feedback")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h2 class="welcome">Welcome @User.Identity.Name </h2>
+    <h2>Enroll Report </h2>
+</body>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,34 +55,60 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.session_Details.Session_Des)
+            <label>Session ID</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.skillset.Skill_Type)
+            <label>Username</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userreg.FirstName)
+            <label>Session Des</label>
         </th>
+        <th>
+            <label>Date</label>
+        </th>
+        <th>
+            <label>Time</label>
+        </th>
+        <th>
+            <label>Slots</label>
+        </th>
+        <th>
+            <label>Skill</label>
+        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.session_Details.Session_Des)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userreg.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Sno }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Sno }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Sno })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.session_Details.Session_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userreg.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.session_Details.Session_Des)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.session_Details.Session_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.session_Details.Session_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.session_Details.Available_Slots)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
+            </td>
+
+            <td>
+
+             
+            </td>
+        </tr>
+    }
 
 </table>

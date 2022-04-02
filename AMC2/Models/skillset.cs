@@ -11,7 +11,8 @@ namespace AMC2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class skillset
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +23,11 @@ namespace AMC2.Models
             this.trainerregs = new HashSet<trainerreg>();
         }
     
+        [Required(ErrorMessage ="Skill Id is Required") ]
         public int Skill_Id { get; set; }
+        [Required(ErrorMessage ="Please Enter the Skill" )]
         public string Skill_Type { get; set; }
+        [Required (ErrorMessage ="Description is Required")]
         public string Skill_Des { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -3,8 +3,54 @@
 @{
     ViewBag.Title = "Attendence";
 }
+<head>
+    <style>
+        h2.welcome {
+            text-align: center;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/style")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Attendence Marking for Classroom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
-<h2>Attendence</h2>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li>@Html.ActionLink("Session", "Index", "Session")</li>
+                        <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
+                        <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
+                        <li>@Html.ActionLink("Enroll", "EnrollList", "Marks")</li>
+                        <li>@Html.ActionLink("Mark Attendence", "Attendence", "Marks")</li>
+                        <li>@Html.ActionLink("Feedback", "FeedbackList", "Marks")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h2 class="welcome">Welcome @User.Identity.Name </h2>
+    <h2>Attendence Report</h2>
+</body>
+
 
 <table class="table">
     <tr>
@@ -24,26 +70,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model)
-{
-<tr>
-   
-    <td>
-        @Html.DisplayFor(modelItem => item.userreg.FirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.session_Details.Session_Des)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
-    </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.CheckBoxFor(modelItem => item)
 
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Sno }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Sno }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Sno })
-    </td>
-</tr>
-}
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.session_Details.Session_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userreg.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.session_Details.Session_Des)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
+            </td>
+
+            <td>
+                @Html.ActionLink("Save", "Save")
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Sno }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Sno }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Sno })
+                *@
+            </td>
+        </tr>
+    }
 
 </table>

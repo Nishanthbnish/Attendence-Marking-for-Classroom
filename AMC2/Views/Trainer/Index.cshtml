@@ -41,7 +41,10 @@
                         <li>@Html.ActionLink("Session", "Index", "Session")</li>
                         <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
                         <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Enroll", "EnrollList", "Marks")</li>
+                        <li>@Html.ActionLink("Mark Attendence", "Attendence", "Marks")</li>
+                        <li>@Html.ActionLink("Feedback", "FeedbackList", "Marks")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
             </div>
@@ -136,6 +139,7 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.Trainer_Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Trainer_Id })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.Trainer_Id })
+
                 </td>
             </tr>
 

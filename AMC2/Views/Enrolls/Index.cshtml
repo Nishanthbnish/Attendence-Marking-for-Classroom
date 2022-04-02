@@ -36,9 +36,9 @@
                     {
 
                         <li>@Html.ActionLink("Enroll", "Index", "Enrolls")</li>
-                        <li>@Html.ActionLink("Session", "Index", "Session")</li>
+                        <li>@Html.ActionLink("Session", "SessionList", "Marks")</li>
                         <li>@Html.ActionLink("Feedback", "Index", "Feedback")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
             </div>
@@ -113,9 +113,7 @@
 
                 <td>
                     
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Sno }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Sno }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Sno })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Sno }) 
                 </td>
             </tr>
         }

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<AMC2.Models.session_Details>
+
+@{
+    ViewBag.Title = "SessionList";
+}
+<head>
+    <style>
+        h2.welcome {
+            text-align: center;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/style")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Attendence Marking for Classroom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li>@Html.ActionLink("Enroll", "Index", "Enrolls")</li>
+                        <li>@Html.ActionLink("Session", "SessionList", "Marks")</li>
+                        <li>@Html.ActionLink("Feedback", "FeedbackList", "Marks")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h2 class="welcome">Welcome @User.Identity.Name </h2>
+    <h2>Session Report </h2>
+</body>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <label>Session ID</label>
+            </th>
+            <th>
+                <label>Session Des</label>
+            </th>
+            <th>
+                <label>Session Date</label>
+            </th>
+            <th>
+                <label>Session Time</label>
+            </th>
+            <th>
+                <label>Slots Available</label>
+            </th>
+            <th>
+                <label>Skill</label>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session_Des)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available_Slots)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.skillset.Skill_Type)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -38,7 +38,10 @@
                         <li>@Html.ActionLink("Session", "Index", "Session")</li>
                         <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
                         <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Enroll", "EnrollList", "Marks")</li>
+                        <li>@Html.ActionLink("Mark Attendence", "Attendence", "Marks")</li>
+                        <li>@Html.ActionLink("Feedback", "FeedbackList", "Marks")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
             </div>
@@ -46,47 +49,53 @@
     </div>
     <h2 class="welcome">Welcome @User.Identity.Name </h2>
     <h2>Skillset Report </h2>
-    
+
 </body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
-    @if (@TempData["AlertMessage"] != null)
+@if (@TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["AlertMessage"]
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>@*x*@
+        </button>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            <label>Skill ID</label>
+        </th>
+        <th>
+            <label>Skill</label>
+        </th>
+        <th>
+            <label>Skill Description</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
     {
-        <div class="alert alert-success">
-            <strong>Success!</strong> @TempData["AlertMessage"]
-            <button type="button" class="close" data-dismiss="alert">
-                <span>&times;</span>@*x*@
-            </button>
-        </div>
-    }
-    <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Skill_Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Skill_Des)
-            </th>
-            <th></th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skill_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skill_Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skill_Des)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Skill_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Skill_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Skill_Id })
+            </td>
         </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Skill_Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Skill_Des)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Skill_Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Skill_Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Skill_Id })
-                </td>
-            </tr>
-        }
-
-    </table>
+    }
+   
+</table>

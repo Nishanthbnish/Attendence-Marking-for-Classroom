@@ -11,7 +11,9 @@ namespace AMC2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class userreg
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,8 +25,15 @@ namespace AMC2.Models
     
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "The Password is required")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [Compare("Password")]
+        public string Confirm { get; set; }
         public int User_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

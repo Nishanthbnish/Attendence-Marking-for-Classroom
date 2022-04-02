@@ -25,7 +25,7 @@ namespace AMC2.Controllers
                 if (isValid)
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, false);
-                    return RedirectToAction("Index", "Enrolls");
+                    return RedirectToAction("SessionList", "Marks");
                 }
 
                 ModelState.AddModelError("", "Invalid username and password");
@@ -83,13 +83,9 @@ namespace AMC2.Controllers
                 context.adminregs.Add(model);
                 context.SaveChanges();
             }
-            return RedirectToAction("Login");
+            return RedirectToAction("Alogin");
         }
 
-        public ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
-        }
+        
     }
 }

@@ -36,9 +36,9 @@
                     {
 
                         <li>@Html.ActionLink("Enroll", "Index", "Enrolls")</li>
-                        <li>@Html.ActionLink("Session", "Index", "Session")</li>
+                        <li>@Html.ActionLink("Session", "SessionList", "Marks")</li>
                         <li>@Html.ActionLink("Feedback", "Index", "Feedback")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
             </div>
@@ -46,7 +46,15 @@
     </div>
     <h2 class="welcome">Welcome @User.Identity.Name </h2>
     <h2>Feedback Report </h2>
-
+    @if (@TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> @TempData["AlertMessage"]
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>@*x*@
+            </button>
+        </div>
+    }
 </body>
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -84,9 +92,8 @@
                 @Html.DisplayFor(modelItem => item.userreg.FirstName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                
             </td>
         </tr>
     }

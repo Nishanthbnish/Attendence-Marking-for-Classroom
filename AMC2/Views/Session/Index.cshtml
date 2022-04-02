@@ -8,6 +8,9 @@
         h2.welcome {
             text-align: center;
         }
+        p.align{
+            text-align:left;
+        }
     </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,9 +41,10 @@
                         <li>@Html.ActionLink("Session", "Index", "Session")</li>
                         <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
                         <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
-                        <li>@Html.ActionLink("Enroll", "Index", "Enrolls")</li>
+                        <li>@Html.ActionLink("Enroll", "EnrollList", "Marks")</li>
                         <li>@Html.ActionLink("Mark Attendence", "Attendence", "Marks")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Feedback", "FeedbackList", "Marks")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
             </div>
@@ -50,47 +54,57 @@
     <h2>Session Report </h2>
 </body>
 
+
+
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    @if (@TempData["AlertMessage"] != null)
+    @using (Html.BeginForm("Index", "Session", FormMethod.Post))
     {
-        <div class="alert alert-success">
-            <strong>Success!</strong> @TempData["AlertMessage"]
-            <button type="button" class="close" data-dismiss="alert">
-                <span>&times;</span>@*x*@
-            </button>
-        </div>
-    }
-    <table class="table">
-        <tr>
-            @*<th>
-            <label>Selection</label>
-        </th>*@
-            <th>
-                <label>Session ID</label>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Session_Des)
-            </th>
-            <th>
-                <label>Date</label>
-            </th>
-            <th>
-                <label>Time</label>
-            </th>
-            <th>
-                <label>Slots</label>
-            </th>
-            <th>
-                <label>Skill</label>
-            </th>
-            <th></th>
-        </tr>
+        <p class="align">
+            <input type="search" placeholder="Enter Session description.." name="SessionSearch" style="width:500px;" />
+            <input type="submit" value="Search" class="btn btn-primary" />
 
-        @foreach (var item in Model)
-        {
+        </p>
+    }
+@if (@TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["AlertMessage"]
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>@*x*@
+        </button>
+    </div>
+}
+<table class="table">
     <tr>
+        @*<th>
+                <label>Selection</label>
+            </th>*@
+        <th>
+            <label>Session ID</label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Session_Des)
+        </th>
+        <th>
+            <label>Date</label>
+        </th>
+        <th>
+            <label>Time</label>
+        </th>
+        <th>
+            <label>Slots</label>
+        </th>
+        <th>
+            <label>Skill</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Session_Id)
             </td>
@@ -114,7 +128,7 @@
                 @Html.ActionLink("Details", "Details", new { id = item.Session_Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Session_Id })
             </td>
-    </tr>
-        }
+        </tr>
+    }
 
-    </table>
+</table>
