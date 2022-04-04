@@ -185,11 +185,17 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\styles.css" />
+    <Content Include="Content\css\StyleSheet1.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\footer\bootstrap.css" />
+    <Content Include="Content\footer\font-awesome.css" />
+    <Content Include="Content\footer\style.css" />
     <Content Include="Content\HomeCSS\animate.min.css" />
     <Content Include="Content\HomeCSS\bootstrap.min.css" />
     <Content Include="Content\HomeCSS\font-awesome.min.css" />
     <Content Include="Content\HomeCSS\templatemo-style.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\TableStyle.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -235,8 +241,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="image\attendence.jpg" />
     <Content Include="image\contact-bg.jpg" />
+    <Content Include="image\compo.jpg" />
+    <Content Include="image\1.jpg" />
+    <Content Include="image\2.jpg" />
     <Content Include="image\home-bg.jpg" />
+    <Content Include="image\comp.jpg" />
     <Content Include="image\software-img.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -258,6 +269,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\footer\bootstrap.js" />
+    <Content Include="Scripts\footer\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\footer\popper.js" />
     <Content Include="Scripts\HomeJS\bootstrap.min.js" />
     <Content Include="Scripts\HomeJS\custom.js" />
     <Content Include="Scripts\HomeJS\jquery.js" />
@@ -274,8 +288,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\bootstrap.bundel.min.js" />
     <Content Include="Scripts\js\scripts.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

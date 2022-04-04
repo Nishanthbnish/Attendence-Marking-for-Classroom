@@ -12,43 +12,63 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/css/StyleSheet1.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/style")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/TableStyle.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<header class="header">
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Attendence Marking for Classroom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
 
 
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li class="nav-item">
+                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Session", "Index", "Session", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Trainer", "Index", "Trainer", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Enroll", "EnrollList", "Marks", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Mark Attendence", "Attendence", "Marks", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Skill Set", "Index", "Skillsets", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Feedback", "FeedbackList", "Marks", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
 
-                        <li>@Html.ActionLink("Session", "Index", "Session")</li>
-                        <li>@Html.ActionLink("Trainer", "Index", "Trainer")</li>
-                        <li>@Html.ActionLink("Skill Set", "Index", "Skillsets")</li>
-                        <li>@Html.ActionLink("Enroll", "EnrollList", "Marks")</li>
-                        <li>@Html.ActionLink("Mark Attendence", "Attendence", "Marks")</li>
-                        <li>@Html.ActionLink("Feedback", "FeedbackList", "Marks")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+
                     }
                 </ul>
             </div>
         </div>
-    </div>
-    <h2 class="welcome">Welcome @User.Identity.Name </h2>
-    <h2>Attendence Report</h2>
+    </nav>
+</header>
+
+
+
+
+<h2 class="welcome  text-uppercase font-weight-bold ">Welcome @User.Identity.Name </h2>
+<h2>Attendence Report</h2>
 </body>
 
 
@@ -91,10 +111,10 @@
             </td>
 
             <td>
-                @Html.ActionLink("Save", "Save")
+                @Html.ActionLink("Save", "Save", new { @class = "btn btn-primary" })
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.Sno }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Sno }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Sno })
+        @Html.ActionLink("Details", "Details", new { id = item.Sno }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Sno })
                 *@
             </td>
         </tr>
