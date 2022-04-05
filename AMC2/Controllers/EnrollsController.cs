@@ -130,6 +130,20 @@ namespace AMC2.Controllers
             TempData["AlertMessage"] = "Deleted Successfully !";
             return RedirectToAction("Index");
         }
+        public ActionResult Save(session_Details stud)
+        {
+            try
+            {
+                stud.Session_Id = db.session_Details.Select(e => e.Session_Id).Max() + 1;
+                db.session_Details.Add(stud);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -26,7 +26,7 @@ namespace AMC2.Models
         [Required]
         public int Session_Id { get; set; }
         [StringLength(100,MinimumLength=5)]
-        [Required ]
+        
         public string Session_Des { get; set; }
         [Required]
         public Nullable<int> Skill_Id { get; set; }

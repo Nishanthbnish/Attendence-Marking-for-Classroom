@@ -111,7 +111,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Save", "Save", new { @class = "btn btn-primary" })
+                @Html.ActionLink("Save", "Save", new { id = item.Session_Id },  new { @class = "btn btn-primary" })
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.Sno }) |
         @Html.ActionLink("Details", "Details", new { id = item.Sno }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.Sno })

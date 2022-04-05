@@ -7,7 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/css/StyleSheet1.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
+    <link href="~/Content/Login/StyleSheet.css" rel="stylesheet" />
 
 
 </head>
@@ -59,7 +63,6 @@
         </div>
     </nav>
 </header>
-<h2>Login</h2>
 @if (@TempData["AlertMessage"] != null)
 {
     <div class="alert alert-success">
@@ -70,41 +73,30 @@
     </div>
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <h4>Membership</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-        </div>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
     </div>
+    <form action="/Account/Login" method="post" class="form">
+        <h3>User Login </h3>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        <label class="label" for="username">Username</label>
+
+        <input class="input" id="username" name="Username" type="text" value="">
+
+        <label class="label" for="password">Password</label>
+        <input class="input" id="password" name="Password" type="password" placeholder="Password">
+
+        <button class="button" type="submit">Log In</button>
+        <div>
+            @Html.ActionLink("Click to sign up", "Signup", new { @class = "form-control" })
         </div>
-    </diV>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Login" class="btn btn-primary" />
+        <div class="social">
+            <div class="go"><i class="fab fa-google"></i>  Google</div>
+            <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
-    </div>
-</div>
-}
+    </form>
 
-<div>
-    @Html.ActionLink("Click to Sign up", "Signup")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

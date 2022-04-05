@@ -37,5 +37,19 @@ namespace AMC2.Controllers
             var session_Details = db.session_Details.Include(s => s.skillset);
             return View(session_Details.ToList());
         }
+        public ActionResult Save(session_Details stud)
+        {
+            try
+            {
+                stud.Session_Id = db.session_Details.Select(e => e.Session_Id).Max() + 1;
+                db.session_Details.Add(stud);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

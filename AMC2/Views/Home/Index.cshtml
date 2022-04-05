@@ -32,33 +32,36 @@
    
 
 </head>
-<header class="header">
-    <nav class="navbar navbar-expand-lg fixed-top py-3">
-        <div class="container">
-            <a href="#" class="navbar-brand text-uppercase font-weight-bold">Attendence Marking for Classroom</a>
-            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top py-3">
+            <div class="container">
+                <a href="#" class="navbar-brand text-uppercase font-weight-bold">Attendence Marking for Classroom</a>
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
+                        </li>
+
+                        <li class="nav-item">
+
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle text-uppercase font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Registration
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
+
+                                <li">@Html.ActionLink("User", "Signup", "Account", new { area = "" }, new { @class = "dropdown-item text-uppercase font-weight-bold" })
+                        </li>
+                        <li>@Html.ActionLink("Admin", "Asignup", "Account", new { area = "" }, new { @class = "dropdown-item text-uppercase font-weight-bold" })</li>
+                    </ul>
+                    </li>
+                    </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })
-                    </li>
-
-                <li class="nav-item">
-
-                    <li class="dropdown">
-                        <a class="nav-link dropdown-toggle text-uppercase font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Registration
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
-
-                            <li">@Html.ActionLink("User", "Signup", "Account", new { area = "" }, new { @class = "dropdown-item text-uppercase font-weight-bold" })</li>
-                            <li>@Html.ActionLink("Admin", "Asignup", "Account", new { area = "" }, new { @class = "dropdown-item text-uppercase font-weight-bold" })</li>
-                        </ul>
-                    </li>
-                </li>
-                <li class="nav-item">
 
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle text-uppercase font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,17 +73,15 @@
                             <li>@Html.ActionLink("Admin", "Alogin", "Account", new { area = "" }, new { @class = "dropdown-item text-uppercase font-weight-bold" })</li>
                         </ul>
                     </li>
-                </li>       
+                    </li>
 
-                <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })</li>
+                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link text-uppercase font-weight-bold" })</li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
-<body>
-
+        </nav>
+    </header>
     <!-- start preloader -->
     <!-- end preloader -->
     <!-- start navigation -->
@@ -157,7 +158,6 @@
     </section>
     <!-- end download -->
     <!-- start contact -->
- 
     <!-- end contact -->
     <!-- start footer -->
     <section id="divider">
@@ -205,5 +205,5 @@
     <script src="~/Scripts/HomeJS/wow.min.js"></script>
     <script src="~/Scripts/HomeJS/jquery.singlePageNav.min.js"></script>
     <script src="~/Scripts/HomeJS/custom.js"></script>
-    
+
 </body>

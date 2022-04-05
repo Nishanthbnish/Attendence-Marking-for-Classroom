@@ -194,6 +194,8 @@
     <Content Include="Content\HomeCSS\bootstrap.min.css" />
     <Content Include="Content\HomeCSS\font-awesome.min.css" />
     <Content Include="Content\HomeCSS\templatemo-style.css" />
+    <Content Include="Content\Login\Style.css" />
+    <Content Include="Content\Login\StyleSheet.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\TableStyle.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -290,6 +292,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\bootstrap.bundel.min.js" />
     <Content Include="Scripts\js\scripts.js" />
+    <Content Include="Scripts\Login\JavaScript.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Web.config" />
