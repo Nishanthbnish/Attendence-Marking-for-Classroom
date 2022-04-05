@@ -261,6 +261,18 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Project Images\Enroll.png" />
+    <Content Include="Project Images\Feedback.png" />
+    <Content Include="Project Images\Home.png" />
+    <Content Include="Project Images\Home1.png" />
+    <Content Include="Project Images\Login.png" />
+    <Content Include="Project Images\Marks.png" />
+    <Content Include="Project Images\Navbar.png" />
+    <Content Include="Project Images\Session.png" />
+    <Content Include="Project Images\Signup.png" />
+    <Content Include="Project Images\Skill.png" />
+    <Content Include="Project Images\Team.png" />
+    <Content Include="Project Images\User.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Model1.edmx">
