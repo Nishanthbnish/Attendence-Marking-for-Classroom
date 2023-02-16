@@ -35,7 +35,7 @@
 ## step 7 :Login with same creadentials.
 ![](AMC2/Project%20Images/Login.png)
 ## Step 8:After Successfull Admin login you will be redirected to User Main Page.
-## Session Report (As a user I want the  system that procure the fundamental details of the user)
+* Session Report (As a user I want the  system that procure the fundamental details of the user)
 ![User](https://user-images.githubusercontent.com/43651531/219293851-544f9dad-5137-4317-be70-13c71ac405eb.png)
 
 ## Enroll:As an User I want the system to allow user to enroll for the session
