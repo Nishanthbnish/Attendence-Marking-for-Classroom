@@ -45,7 +45,6 @@
 ![Feedback](https://user-images.githubusercontent.com/43651531/219294780-04bc8906-693c-45ab-800c-3a660fc77965.png)
 
 ## Step 7:Logout Redirected to Login page
-----------------------------------------------------------------------------------------------
 ## Teams: Project Done By 
 ![Team](https://user-images.githubusercontent.com/43651531/219294576-94595e41-b07b-46d2-83a9-1dcc35709eda.png)
 
